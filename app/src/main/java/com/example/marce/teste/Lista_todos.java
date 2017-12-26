@@ -1,6 +1,8 @@
 package com.example.marce.teste;
 
 import retrofit2.Response;
+
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -55,11 +57,12 @@ public class Lista_todos extends AppCompatActivity {
     @Override
     public boolean onContextItemSelected(MenuItem item) {
         AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo)item.getMenuInfo();
-        
+
 
                 if(item.getTitle()=="Favoritos"){
 
-
+                    Intent intentfavoritos = new Intent(Lista_todos.this,Activity_Favoritos.class);
+                    startActivity(intentfavoritos);
 
                 }
                 else if (item.getTitle()=="Detalhes"){

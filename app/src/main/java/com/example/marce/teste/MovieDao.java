@@ -94,6 +94,9 @@ public class MovieDao {
               ContentValues cv = new ContentValues();
               cv.put("title", movie.getTitle());
               cv.put("overview", movie.getOverview());
+              cv.put("releaseDate", movie.getReleaseDate());
+              cv.put("originalTitle", movie.getOriginalTitle());
+
               long id = db.insert("movie", null, cv);
 
           }
