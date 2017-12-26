@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.marce.teste.Activity_Principal">
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="FAVORITOS"
+            android:id="@+id/princia_l_favoritos"
+            />
+
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TODOS"
+            android:id="@+id/princia_l_todos"
+            android:textAlignment="center"
+
+            />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="HISTÓRICO"
+            android:id="@+id/princia_l_historico"
+            android:textAlignment="center"
+            />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="CRÉDITO"
+            android:id="@+id/princia_l_creditos"
+            android:textAlignment="center"
+            />
+
+
+
+    </LinearLayout>
+
+
+</LinearLayout>
