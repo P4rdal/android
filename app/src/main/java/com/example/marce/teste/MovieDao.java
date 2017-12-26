@@ -64,16 +64,37 @@ public class MovieDao {
     }
 
 
+    public boolean verifica(String titulo) {
+
+       Cursor cursor = db.rawQuery("SELECT title FROM movie WHERE title = ?",new String[]{titulo});
+
+       if ( cursor == null ){
+
+
+           return true;
+
+
+       } else {
+
+           return false;
+
+       }
+    }
+
 
 
 
 
     public void insert(Movie movie) {
-        ContentValues cv = new ContentValues();
-        cv.put("title", movie.getTitle());
-        cv.put("overview", movie.getOverview());
-        long id = db.insert("movie", null, cv);
 
+          if (verifica(movie.title)== true){
+
+              ContentValues cv = new ContentValues();
+              cv.put("title", movie.getTitle());
+              cv.put("overview", movie.getOverview());
+              long id = db.insert("movie", null, cv);
+
+          }
     }
 
     public void remove(long id) {
