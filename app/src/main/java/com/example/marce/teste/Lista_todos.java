@@ -48,6 +48,7 @@ public class Lista_todos extends AppCompatActivity {
         movieDao = new MovieDao(this);
         movieDao.open();
 
+
         if (API_KEY.isEmpty()) {
             Toast.makeText(getApplicationContext(), "Coloque sua chave", Toast.LENGTH_LONG).show();
             return;

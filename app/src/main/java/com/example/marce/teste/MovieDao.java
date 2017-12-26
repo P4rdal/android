@@ -3,6 +3,7 @@ package com.example.marce.teste;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
@@ -64,21 +65,22 @@ public class MovieDao {
     }
 
 
-    public boolean verifica(String titulo) {
+    public String verifica(String titulo) {
+      try {
+          String selectQuery = "SELECT * FROM movie WHERE title ="+ titulo;
+          Cursor cursor = db.rawQuery(selectQuery,null);
+          cursor.moveToFirst();
+          String nomeString = cursor.getString(cursor.getColumnIndex("title"));
+          StringBuilder conversor = new StringBuilder();
+          conversor.append(nomeString);
+          return conversor.toString();
+      } catch (SQLException erro ){
 
-       Cursor cursor = db.rawQuery("SELECT title FROM movie WHERE title = ?",new String[]{titulo});
-
-       if ( cursor == null ){
-
-
-           return true;
+          return null;
+      }
 
 
-       } else {
 
-           return false;
-
-       }
     }
 
 
@@ -87,7 +89,7 @@ public class MovieDao {
 
     public void insert(Movie movie) {
 
-          if (verifica(movie.title)== true){
+          if (verifica(movie.title)== movie.title){
 
               ContentValues cv = new ContentValues();
               cv.put("title", movie.getTitle());
@@ -97,12 +99,13 @@ public class MovieDao {
           }
     }
 
-    public void remove(long id) {
-        db.delete("movie", "_id = " + id, null);
+    //* public void remove(long id) {  db.delete("movie", "_id = " + id, null);}
+
+    public void remove() {
+        db.delete("movie",null,null );
+        db.execSQL("delete * from"+ "movie");
+
     }
-
-
-
 
 
 }
