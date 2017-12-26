@@ -6,4 +6,15 @@
     android:layout_height="match_parent"
     tools:context="com.example.marce.teste.Lista_todos">
 
+
+<ListView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/lista_todos">
+
+</ListView>
+
+
+
+
 </android.support.constraint.ConstraintLayout>

@@ -43,9 +43,19 @@ public class MovieDao {
         while (!cursor.isAfterLast()) {
 
             int id = cursor.getInt(0);
-            String title = cursor.getString(1);
+            String posterPath = cursor.getString(1);
             String overview = cursor.getString(2);
-            Movie movie = new Movie(null, FALSE, overview, null, null, id, null, null, title, null, null, null, null, null);
+            String releaseDate = cursor.getString(3);
+            String originalTitle = cursor.getString(5);
+            String originalLanguage = cursor.getString(6);
+            String title = cursor.getString(7);
+            String backdropPath = cursor.getString(8);
+
+
+
+            Movie movie = new Movie(posterPath,FALSE,overview,releaseDate,null,id,originalTitle,
+                    originalLanguage,title,backdropPath,null,null,null,null);
+
             lista.add(movie);
             cursor.moveToNext();
         }
@@ -55,14 +65,23 @@ public class MovieDao {
 
 
 
+
+
+
     public void insert(Movie movie) {
         ContentValues cv = new ContentValues();
-        cv.put("title", movie.title);
-        cv.put("overview", movie.overview);
+        cv.put("title", movie.getTitle());
+        cv.put("overview", movie.getOverview());
         long id = db.insert("movie", null, cv);
-        Log.d("teste", "inserido filme com id = " + id);
+
     }
+
     public void remove(long id) {
         db.delete("movie", "_id = " + id, null);
     }
+
+
+
+
+
 }
