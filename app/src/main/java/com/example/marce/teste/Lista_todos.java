@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import retrofit2.Callback;
 
+import com.example.marce.teste.adapter.AdapterMovie;
 import com.example.marce.teste.adapter.MoviesAdapter;
 import com.example.marce.teste.model.Movie;
 import com.example.marce.teste.model.MoviesResponse;
@@ -32,7 +33,10 @@ import static java.lang.Boolean.FALSE;
 public class Lista_todos extends AppCompatActivity {
 
 
-    private ListView lv;
+    /*private ListView lv;*/
+
+    private ListView listaMovies;
+
     MovieDao movieDao;
     private static final String TAG = MainActivity.class.getSimpleName();
     private final static String API_KEY = "f96f35dad2d93764c36ed623ec9148ff";
@@ -44,7 +48,9 @@ public class Lista_todos extends AppCompatActivity {
         setContentView(R.layout.activity_lista_todos);
 
 
-        lv = (ListView) findViewById(R.id.lista_todos);
+        //*lv = (ListView) findViewById(R.id.lista_todos);
+
+        listaMovies = (ListView) findViewById(R.id.lista_todos);
         movieDao = new MovieDao(this);
         movieDao.open();
 
@@ -84,7 +90,7 @@ public class Lista_todos extends AppCompatActivity {
             }
         });
 
-        List<String> allmovie = new ArrayList<String>();
+        /*List<String> allmovie = new ArrayList<String>();
         List<Movie> todosfilmes = movieDao.getAll();;
         for (Movie film : todosfilmes){
 
@@ -92,9 +98,13 @@ public class Lista_todos extends AppCompatActivity {
 
         }
 
-
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,allmovie);
-        lv.setAdapter(arrayAdapter);
+        lv.setAdapter(arrayAdapter);*/
+
+
+        List<Movie> filmes = movieDao.getAll();
+        AdapterMovie adpter = new AdapterMovie(this,filmes);
+        listaMovies.setAdapter(adpter);
 
 
 

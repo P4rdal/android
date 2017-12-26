@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.marce.teste.Lista_todos">
+    tools:context="com.example.marce.teste.Lista_todos"
+    android:id="@+id/listagem_todos">
 
 
 <ListView
