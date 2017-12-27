@@ -2,6 +2,7 @@ package com.example.marce.teste;
 
 import retrofit2.Response;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -39,16 +40,21 @@ import static java.lang.Boolean.FALSE;
 
 public class Lista_todos extends AppCompatActivity {
 
-
-
+    public Activity_Favoritos Ave ;
+    public List<Movie> filmes;
     private ListView listaMovies;
     MovieDao movieDao;
     private static final String TAG = MainActivity.class.getSimpleName();
     private final static String API_KEY = "f96f35dad2d93764c36ed623ec9148ff";
 
+
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
         super.onCreateContextMenu(menu,v,menuInfo);
+
+        AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) menuInfo;
+        int id = info.targetView.getId();
+
         menu.setHeaderTitle("Selecione uma opção");
         menu.add(0,v.getId(),0,"Favoritos");
         menu.add(0,v.getId(),0,"Detalhes");
@@ -59,13 +65,38 @@ public class Lista_todos extends AppCompatActivity {
         AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo)item.getMenuInfo();
 
 
+
                 if(item.getTitle()=="Favoritos"){
 
-                    Intent intentfavoritos = new Intent(Lista_todos.this,Activity_Favoritos.class);
-                    startActivity(intentfavoritos);
+                    int id = info.position;
+                    Movie test = filmes.get(id);
+                    String teste = test.getTitle();
+
+                    Context context = getApplicationContext();
+                    CharSequence text = teste;
+                    int duration = Toast.LENGTH_SHORT;
+
+                    Toast toast = Toast.makeText(context, text, duration);
+                    toast.show();
+
+
 
                 }
                 else if (item.getTitle()=="Detalhes"){
+
+                    int id = info.targetView.getId();
+                    String teste = String.valueOf(id);
+
+                    Context context = getApplicationContext();
+                    CharSequence text = teste;
+
+
+
+
+                    int duration = Toast.LENGTH_SHORT;
+
+                    Toast toast = Toast.makeText(context, text, duration);
+                    toast.show();
 
 
 
@@ -91,7 +122,7 @@ public class Lista_todos extends AppCompatActivity {
         movieDao = new MovieDao(this);
         movieDao.open();
 
-        List<Movie> filmes = movieDao.getAll();
+        filmes = movieDao.getAll();
         AdapterMovie adpter = new AdapterMovie(this,filmes);
         listaMovies.setAdapter(adpter);
 
