@@ -4,6 +4,7 @@ import retrofit2.Response;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -70,29 +71,27 @@ public class Lista_todos extends AppCompatActivity {
 
                     int id = info.position;
                     Movie test = filmes.get(id);
-                    String teste = test.getTitle();
+                    String titulo = test.getTitle();
+                    String descricao = test.getOverview();
+                    GravaShare(descricao,titulo);
 
-                    Context context = getApplicationContext();
-                    CharSequence text = teste;
-                    int duration = Toast.LENGTH_SHORT;
 
-                    Toast toast = Toast.makeText(context, text, duration);
-                    toast.show();
+
 
 
 
                 }
                 else if (item.getTitle()=="Detalhes"){
 
-                    int id = info.targetView.getId();
-                    String teste = String.valueOf(id);
+                    int id = info.position;
+                    Movie test = filmes.get(id);
+                    String teste = test.getTitle();
+                    String testeo = test.getOverview();
+
+                    GravaShare("tres","terceiro filme");
 
                     Context context = getApplicationContext();
                     CharSequence text = teste;
-
-
-
-
                     int duration = Toast.LENGTH_SHORT;
 
                     Toast toast = Toast.makeText(context, text, duration);
@@ -106,9 +105,32 @@ public class Lista_todos extends AppCompatActivity {
 
                    return false;
 
+
+
+
+
+
+
+
+
+
+
+
+
                 }
 
                 return true;
+
+    }
+
+
+    public void GravaShare (String Chave, String Valor){
+
+        SharedPreferences settings = getSharedPreferences("FILMES_Test", 0);
+        SharedPreferences.Editor editor = settings.edit();
+        editor.putString(Chave,Valor );
+        editor.commit();
+
 
     }
 

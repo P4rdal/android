@@ -65,12 +65,12 @@ public class AdapterMovie extends BaseAdapter {
         }
 
 
-        TextView campoDescricao = (TextView)view.findViewById(R.id.list_todos_descricao);
+        /*TextView campoDescricao = (TextView)view.findViewById(R.id.list_todos_descricao);
 
         if (campoDescricao != null) {
 
             campoDescricao.setText(movie.getOverview());
-        }
+        }*/
 
         return view;
 

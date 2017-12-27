@@ -2,6 +2,7 @@ package com.example.marce.teste;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
@@ -78,6 +79,7 @@ public class MovieDao {
 
           return null;
       }
+
 
 
 
