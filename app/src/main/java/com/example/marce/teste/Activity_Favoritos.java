@@ -1,6 +1,7 @@
 package com.example.marce.teste;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -21,36 +22,49 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 
 public class Activity_Favoritos extends AppCompatActivity {
 
 
-
+    List<String> itemList;
+    Map mapa_ids;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity__favoritos);
         ListView lista = (ListView) findViewById(R.id.favoritos_filmesfav);
-        Map mapa = recupera();
-        String titulo = mapa.values().toString();
-        titulo = titulo.replace("[","");
-        titulo = titulo.replace("]","");
-        String[] titulos = titulo.split(",");
-        List<String> itemList = new ArrayList<String>();
 
-        for (String tit : titulos){
+        mapa_ids = recupera_descricao_ids();
+        String id_titulo = mapa_ids.keySet().toString();
+        id_titulo = id_titulo.replace("[","");
+        id_titulo = id_titulo.replace("]","");
+        id_titulo = id_titulo.replace(" ","");
+        String[] titulos = id_titulo.split(",");
+
+        itemList = new ArrayList<String>();
+
+
+
+        for (String titid : titulos){
+
+            String tit = recupera_titulo(titid);
             itemList.add(tit);
         }
+
 
         ordenaPorNome(itemList);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_activated_1,itemList);
         lista.setAdapter(adapter);
 
         registerForContextMenu(lista);
+
+
 
     }
 
@@ -67,6 +81,7 @@ public class Activity_Favoritos extends AppCompatActivity {
         menu.add(0,v.getId(),0,"Remover");
     }
 
+
     @Override
     public boolean onContextItemSelected(MenuItem item) {
         AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo)item.getMenuInfo();
@@ -75,7 +90,18 @@ public class Activity_Favoritos extends AppCompatActivity {
 
         if(item.getTitle()=="Detalhes"){
 
+            int id = info.position;
+            String titulo = itemList.get(id);
+            String descricao = String.valueOf(getKeysByValue(mapa_ids,titulo));
+            descricao = descricao.replace("[","");
+            descricao = descricao.replace("]","");
+            descricao = descricao.replace(" ","");
+            descricao = recupera_descricao(descricao);
 
+            Intent intent = new Intent(Activity_Favoritos.this,Activity_Detalhes.class);
+            intent.putExtra("TITULO",titulo);
+            intent.putExtra("DESCRICAO",descricao);
+            startActivity(intent);
 
 
 
@@ -102,14 +128,34 @@ public class Activity_Favoritos extends AppCompatActivity {
 
 
 
+    public Map recupera_descricao_ids () {
 
-    public Map recupera () {
-
-        SharedPreferences settings = getSharedPreferences("FAVORITOS", 0);
+        SharedPreferences settings = getSharedPreferences("FAVORITOS_TITULO", 0);
         Map title =settings.getAll();
         return title;
     }
 
+
+    public String recupera_descricao (String Key) {
+
+        SharedPreferences settings = getSharedPreferences("FAVORITOS_DESCRICAO", 0);
+        String title =settings.getString(Key,null);
+        return title;
+    }
+
+    public String recupera_titulo (String Key) {
+
+        SharedPreferences settings = getSharedPreferences("FAVORITOS_TITULO", 0);
+        String title =settings.getString(Key,"");
+
+
+        if (title == null) {
+
+            return "Item Não Encontrado";
+
+        }else
+        return title;
+    }
 
 
     private static void ordenaPorNome(List<String> lista) {
@@ -122,6 +168,22 @@ public class Activity_Favoritos extends AppCompatActivity {
     }
 
 
+    public static <T, E> Set<T> getKeysByValue(Map<T, E> map, E value) {
+
+        Set<T> keys = new HashSet<T>();
+
+        for (Map.Entry<T, E> entry : map.entrySet()) {
+
+            if (value.equals(entry.getValue())) {
+
+                keys.add(entry.getKey());
+
+            }
+        }
+
+        return keys;
+
+    }
 
 
     }

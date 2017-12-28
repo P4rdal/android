@@ -71,18 +71,24 @@ public class Lista_todos extends AppCompatActivity {
 
                     int id = info.position;
                     Movie test = filmes.get(id);
+                    String id_fav = test.getId().toString();
                     String titulo = test.getTitle();
                     String descricao = test.getOverview();
-                    GravaShare(descricao,titulo);
+                    Grava_Descricao_Favorito(id_fav,descricao);
+                    Grava_Titulo_Favorito(id_fav,titulo);
+
 
                 }
                 else if (item.getTitle()=="Detalhes"){
 
                     int id = info.position;
                     Movie test = filmes.get(id);
+                    String id_his = test.getId().toString();
                     String titulo = test.getTitle();
                     String descricao = test.getOverview();
-                    GravaShareHistorico(descricao,titulo);
+                    Grava_Descricao_Historico(id_his,descricao);
+                    Grava_Titulo_Historico(id_his,titulo);
+
 
                     Intent intent = new Intent(Lista_todos.this,Activity_Detalhes.class);
                     intent.putExtra("TITULO",titulo);
@@ -104,9 +110,9 @@ public class Lista_todos extends AppCompatActivity {
     }
 
 
-    public void GravaShare (String Chave, String Valor){
+    public void Grava_Titulo_Favorito (String Chave, String Valor){
 
-        SharedPreferences settings = getSharedPreferences("FAVORITOS", 0);
+        SharedPreferences settings = getSharedPreferences("FAVORITOS_TITULO", 0);
         SharedPreferences.Editor editor = settings.edit();
         editor.putString(Chave,Valor );
         editor.commit();
@@ -115,9 +121,10 @@ public class Lista_todos extends AppCompatActivity {
     }
 
 
-    public void GravaShareHistorico (String Chave, String Valor){
 
-        SharedPreferences settings = getSharedPreferences("HISTORICO1", 0);
+    public void Grava_Descricao_Favorito (String Chave, String Valor){
+
+        SharedPreferences settings = getSharedPreferences("FAVORITOS_DESCRICAO", 0);
         SharedPreferences.Editor editor = settings.edit();
         editor.putString(Chave,Valor );
         editor.commit();
@@ -125,6 +132,25 @@ public class Lista_todos extends AppCompatActivity {
 
     }
 
+
+    public void Grava_Descricao_Historico (String Chave, String Valor){
+
+        SharedPreferences settings = getSharedPreferences("HISTORICO_DESCRICAO", 0);
+        SharedPreferences.Editor editor = settings.edit();
+        editor.putString(Chave,Valor );
+        editor.commit();
+
+    }
+
+
+    public void Grava_Titulo_Historico (String Chave, String Valor){
+
+        SharedPreferences settings = getSharedPreferences("HISTORICO_TITULO", 0);
+        SharedPreferences.Editor editor = settings.edit();
+        editor.putString(Chave,Valor );
+        editor.commit();
+
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
