@@ -85,17 +85,10 @@ public class Lista_todos extends AppCompatActivity {
 
                     int id = info.position;
                     Movie test = filmes.get(id);
-                    String teste = test.getTitle();
-                    String testeo = test.getOverview();
+                    String titulo = test.getTitle();
+                    String descricao = test.getOverview();
+                    GravaShareHistorico(descricao,titulo);
 
-                    GravaShare("tres","terceiro filme");
-
-                    Context context = getApplicationContext();
-                    CharSequence text = teste;
-                    int duration = Toast.LENGTH_SHORT;
-
-                    Toast toast = Toast.makeText(context, text, duration);
-                    toast.show();
 
 
 
@@ -126,7 +119,7 @@ public class Lista_todos extends AppCompatActivity {
 
     public void GravaShare (String Chave, String Valor){
 
-        SharedPreferences settings = getSharedPreferences("FILMES_Test", 0);
+        SharedPreferences settings = getSharedPreferences("FAVORITOS", 0);
         SharedPreferences.Editor editor = settings.edit();
         editor.putString(Chave,Valor );
         editor.commit();
@@ -134,6 +127,16 @@ public class Lista_todos extends AppCompatActivity {
 
     }
 
+
+    public void GravaShareHistorico (String Chave, String Valor){
+
+        SharedPreferences settings = getSharedPreferences("HISTORICO1", 0);
+        SharedPreferences.Editor editor = settings.edit();
+        editor.putString(Chave,Valor );
+        editor.commit();
+
+
+    }
 
 
     @Override

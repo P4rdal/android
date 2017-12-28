@@ -69,7 +69,7 @@ public class Activity_Favoritos extends AppCompatActivity {
 
     public Map recupera () {
 
-        SharedPreferences settings = getSharedPreferences("FILMES_Test", 0);
+        SharedPreferences settings = getSharedPreferences("FAVORITOS", 0);
         Map title =settings.getAll();
         return title;
     }
