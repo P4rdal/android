@@ -14,16 +14,24 @@
         <activity android:name=".MainActivity" />
         <activity android:name=".Lista_todos" />
         <activity android:name=".Activity_Principal">
+
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
         <activity android:name=".Activity_Historico" />
         <activity android:name=".Activity_Favoritos" />
         <activity android:name=".Activity_Creditos" />
-        <activity android:name=".rest.Activity_Detalhes"></activity>
+        <activity android:name=".rest.Activity_Detalhes" />
+        <activity android:name=".Activity_Detalhes">
+
+
+
+        </activity>
     </application>
 
 </manifest>

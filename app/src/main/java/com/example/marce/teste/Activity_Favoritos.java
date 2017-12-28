@@ -5,9 +5,15 @@ import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.util.SortedList;
+import android.view.ContextMenu;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import com.example.marce.teste.model.Movie;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -28,15 +34,7 @@ public class Activity_Favoritos extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity__favoritos);
-
-
-
-
-
-
-
         ListView lista = (ListView) findViewById(R.id.favoritos_filmesfav);
-
         Map mapa = recupera();
         String titulo = mapa.values().toString();
         titulo = titulo.replace("[","");
@@ -45,25 +43,63 @@ public class Activity_Favoritos extends AppCompatActivity {
         List<String> itemList = new ArrayList<String>();
 
         for (String tit : titulos){
-
             itemList.add(tit);
-
         }
 
         ordenaPorNome(itemList);
-
-
-
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_activated_1,itemList);
-
-
-
-
-
-
         lista.setAdapter(adapter);
 
+        registerForContextMenu(lista);
+
     }
+
+
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu,v,menuInfo);
+
+        AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) menuInfo;
+        int id = info.targetView.getId();
+
+        menu.setHeaderTitle("Selecione uma opção");
+        menu.add(0,v.getId(),0,"Detalhes");
+        menu.add(0,v.getId(),0,"Remover");
+    }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo)item.getMenuInfo();
+
+
+
+        if(item.getTitle()=="Detalhes"){
+
+
+
+
+
+
+        }
+        else if (item.getTitle()=="Remover"){
+
+
+
+
+
+        }
+        else
+        {
+
+            return false;
+
+
+        }
+
+        return true;
+
+    }
+
 
 
 

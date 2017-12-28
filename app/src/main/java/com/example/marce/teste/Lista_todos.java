@@ -75,11 +75,6 @@ public class Lista_todos extends AppCompatActivity {
                     String descricao = test.getOverview();
                     GravaShare(descricao,titulo);
 
-
-
-
-
-
                 }
                 else if (item.getTitle()=="Detalhes"){
 
@@ -89,7 +84,10 @@ public class Lista_todos extends AppCompatActivity {
                     String descricao = test.getOverview();
                     GravaShareHistorico(descricao,titulo);
 
-
+                    Intent intent = new Intent(Lista_todos.this,Activity_Detalhes.class);
+                    intent.putExtra("TITULO",titulo);
+                    intent.putExtra("DESCRICAO",descricao);
+                    startActivity(intent);
 
 
                 }
@@ -97,17 +95,6 @@ public class Lista_todos extends AppCompatActivity {
                 {
 
                    return false;
-
-
-
-
-
-
-
-
-
-
-
 
 
                 }
