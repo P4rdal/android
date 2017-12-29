@@ -49,7 +49,7 @@ public class Activity_Historico extends AppCompatActivity {
         ids = id_keys.split(",");
         titulos = id_titulo.split(",");
 
-        
+
 
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_activated_1,titulos);

@@ -78,7 +78,6 @@ public class Activity_Favoritos extends AppCompatActivity {
 
         menu.setHeaderTitle("Selecione uma opção");
         menu.add(0,v.getId(),0,"Detalhes");
-        menu.add(0,v.getId(),0,"Remover");
     }
 
 
@@ -108,14 +107,7 @@ public class Activity_Favoritos extends AppCompatActivity {
 
 
         }
-        else if (item.getTitle()=="Remover"){
-
-
-
-
-
-        }
-        else
+           else
         {
 
             return false;
