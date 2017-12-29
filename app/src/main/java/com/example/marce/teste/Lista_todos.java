@@ -41,7 +41,7 @@ import static java.lang.Boolean.FALSE;
 
 public class Lista_todos extends AppCompatActivity {
 
-     ;
+
     public List<Movie> filmes;
     private ListView listaMovies;
     MovieDao movieDao;
@@ -153,6 +153,21 @@ public class Lista_todos extends AppCompatActivity {
 
     }
 
+    public void removeduplicado (List<Movie> lista1, List<Movie> lista2){
+
+        for(int i = 0; i < lista1.size();i++){
+
+            for(int x=0; x< lista2.size();x++){
+                if(lista1.get(i).getTitle().equals(lista2.get(x).getTitle())){
+                    lista2.remove(x);
+                }
+            }
+        }
+
+        lista1.addAll(lista2);
+
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -170,9 +185,8 @@ public class Lista_todos extends AppCompatActivity {
         if (API_KEY.isEmpty()) {
             Toast.makeText(getApplicationContext(), "Coloque sua chave", Toast.LENGTH_LONG).show();
             return;
-
-
         }
+
 
 
 
@@ -185,37 +199,28 @@ public class Lista_todos extends AppCompatActivity {
                 List<Movie> movies = response.body().getResults();
                 //*Grava os dados no banco *//
 
-                for (Movie filme : movies){
-
-                    movieDao.insert(filme);
-
-                }
+                removeduplicado(movieDao.getAll(),movies);
 
 
+
+                        for (Movie filme : movies) {
+
+
+                            movieDao.insert(filme);
+
+
+                        }
 
 
 
             }
-
-
 
             @Override
             public void onFailure(Call<MoviesResponse> call, Throwable t) {
                 Log.e(TAG, t.toString());
             }
 
-
-
-
-
-
         });
-
-
-
-
-
-
 
     }
 

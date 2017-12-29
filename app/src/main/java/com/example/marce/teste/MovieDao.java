@@ -66,42 +66,20 @@ public class MovieDao {
     }
 
 
-    public String verifica(String titulo) {
-      try {
-          String selectQuery = "SELECT * FROM movie WHERE title ="+ titulo;
-          Cursor cursor = db.rawQuery(selectQuery,null);
-          cursor.moveToFirst();
-          String nomeString = cursor.getString(cursor.getColumnIndex("title"));
-          StringBuilder conversor = new StringBuilder();
-          conversor.append(nomeString);
-          return conversor.toString();
-      } catch (SQLException erro ){
-
-          return null;
-      }
-
-
-
-
-    }
-
-
 
 
 
     public void insert(Movie movie) {
 
-          if (verifica(movie.title)== movie.title){
 
-              ContentValues cv = new ContentValues();
-              cv.put("title", movie.getTitle());
-              cv.put("overview", movie.getOverview());
-              cv.put("releaseDate", movie.getReleaseDate());
-              cv.put("originalTitle", movie.getOriginalTitle());
+            ContentValues cv = new ContentValues();
+            cv.put("title", movie.getTitle());
+            cv.put("overview", movie.getOverview());
+            cv.put("releaseDate", movie.getReleaseDate());
+            cv.put("originalTitle", movie.getOriginalTitle());
+            long id = db.insert("movie", null, cv);
 
-              long id = db.insert("movie", null, cv);
 
-          }
     }
 
     //* public void remove(long id) {  db.delete("movie", "_id = " + id, null);}
