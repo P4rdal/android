@@ -35,7 +35,22 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/Detalhes_decricao"
+        android:id="@+id/Detalhes_check"
         android:text="Favorito"/>
+
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="12dp"
+        android:layout_marginEnd="12dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="12dp"
+        android:text="HOME"
+        android:id="@+id/Detalhes_home"
+        />
 
 
 

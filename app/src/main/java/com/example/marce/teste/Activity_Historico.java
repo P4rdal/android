@@ -24,6 +24,7 @@ import java.util.Set;
 public class Activity_Historico extends AppCompatActivity {
 
     Map mapa_ids;
+    Map mapa_ids2;
     String[] titulos;
     String[] ids;
 
@@ -147,6 +148,8 @@ public class Activity_Historico extends AppCompatActivity {
         return keys;
 
     }
+
+
 
 
 

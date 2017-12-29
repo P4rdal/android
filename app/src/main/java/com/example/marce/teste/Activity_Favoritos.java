@@ -91,6 +91,7 @@ public class Activity_Favoritos extends AppCompatActivity {
         if(item.getTitle()=="Detalhes"){
 
             int id = info.position;
+
             String titulo = itemList.get(id);
             String descricao = String.valueOf(getKeysByValue(mapa_ids,titulo));
             descricao = descricao.replace("[","");
@@ -185,8 +186,14 @@ public class Activity_Favoritos extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        finish();
+        startActivity(getIntent());
 
     }
+}
 
 
 

@@ -93,6 +93,7 @@ public class Lista_todos extends AppCompatActivity {
                     Intent intent = new Intent(Lista_todos.this,Activity_Detalhes.class);
                     intent.putExtra("TITULO",titulo);
                     intent.putExtra("DESCRICAO",descricao);
+                    intent.putExtra("ID",id_his);
                     startActivity(intent);
 
 
@@ -128,8 +129,6 @@ public class Lista_todos extends AppCompatActivity {
         SharedPreferences.Editor editor = settings.edit();
         editor.putString(Chave,Valor );
         editor.commit();
-
-
     }
 
 
