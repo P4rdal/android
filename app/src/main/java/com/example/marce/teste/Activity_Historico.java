@@ -24,9 +24,9 @@ import java.util.Set;
 public class Activity_Historico extends AppCompatActivity {
 
     Map mapa_ids;
-    Map mapa_ids2;
     String[] titulos;
     String[] ids;
+
 
 
     @Override
@@ -40,10 +40,8 @@ public class Activity_Historico extends AppCompatActivity {
         mapa_ids = recupera_descricao_ids();
         String id_titulo = mapa_ids.values().toString();
         String id_keys = mapa_ids.keySet().toString();
-
         id_titulo = id_titulo.replace("[","");
         id_titulo = id_titulo.replace("]","");
-
         id_keys = id_keys.replace("[","");
         id_keys = id_keys.replace("]","");
         id_keys = id_keys.replace(" ","");
@@ -80,11 +78,18 @@ public class Activity_Historico extends AppCompatActivity {
             int id = info.position;
             String titulo = titulos[id].toString();
             String descricao = ids[id].toString();
+            String id_hist = String.valueOf(getKeysByValue(mapa_ids,titulo));
+            id_hist = id_hist.replace("]","");
+            id_hist = id_hist.replace("[","");
+            id_hist = id_hist.replace(" ","");
+
+
             descricao = recupera_descricao(descricao);
 
             Intent intent = new Intent(Activity_Historico.this,Activity_Detalhes.class);
             intent.putExtra("TITULO",titulo);
             intent.putExtra("DESCRICAO",descricao);
+            intent.putExtra("ID",id_hist);
             startActivity(intent);
 
 

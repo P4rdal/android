@@ -45,7 +45,7 @@ public class Lista_todos extends AppCompatActivity {
     public List<Movie> filmes;
     private ListView listaMovies;
     MovieDao movieDao;
-    private static final String TAG = MainActivity.class.getSimpleName();
+    private static final String TAG = "erro";
     private final static String API_KEY = "f96f35dad2d93764c36ed623ec9148ff";
 
 
