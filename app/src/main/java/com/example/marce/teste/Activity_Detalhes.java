@@ -56,6 +56,8 @@ public class Activity_Detalhes extends AppCompatActivity implements View.OnClick
         txtTitulo.setText(titulo);
 
 
+
+
         txtDescricao = (TextView) findViewById(R.id.Detalhes_decricao);
         txtDescricao.setText(descricao);
 
@@ -76,6 +78,8 @@ public class Activity_Detalhes extends AppCompatActivity implements View.OnClick
         }
 
     }
+
+
 
 
 
@@ -143,7 +147,7 @@ public class Activity_Detalhes extends AppCompatActivity implements View.OnClick
 
         if (bt_Check.isChecked()) {
 
-            Toast.makeText(getApplicationContext(), "Chave   " + chave + "    idpassado   " + id_chave + " status do bt " + bt_Check.isChecked(), Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(),titulo+" Gravado nos Favoritos", Toast.LENGTH_LONG).show();
 
             Grava_Descricao_Favorito(chave, descricao);
             Grava_Titulo_Favorito(chave, titulo);
@@ -151,8 +155,18 @@ public class Activity_Detalhes extends AppCompatActivity implements View.OnClick
 
         }
 
+        if (bt_home.isClickable()){
+
+            Intent intentPrincipal = new Intent(Activity_Detalhes.this,Activity_Principal.class);
+            startActivity(intentPrincipal);
+
+        }
+
 
     }
+
+
+
 
 
     public boolean verificafav(String key) {

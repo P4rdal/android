@@ -41,7 +41,7 @@ import static java.lang.Boolean.FALSE;
 
 public class Lista_todos extends AppCompatActivity {
 
-    public Activity_Favoritos Ave ;
+     ;
     public List<Movie> filmes;
     private ListView listaMovies;
     MovieDao movieDao;
@@ -76,6 +76,8 @@ public class Lista_todos extends AppCompatActivity {
                     String descricao = test.getOverview();
                     Grava_Descricao_Favorito(id_fav,descricao);
                     Grava_Titulo_Favorito(id_fav,titulo);
+
+                    Toast.makeText(getApplicationContext(),titulo+" Gravado nos Favoritos", Toast.LENGTH_LONG).show();
 
 
                 }
